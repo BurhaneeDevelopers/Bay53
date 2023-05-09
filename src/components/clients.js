@@ -25,7 +25,7 @@ const Clients = ({ clients }) => {
         </h2>
 
         <div className="flex justify-center gap-5 mt-14 flex-wrap md:px-24">
-          {/* {clients.map((item) => {
+          {clients.map((item) => {
             return (
               <div
                 className="px-5 bg-white xs:w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/5 border-2 border-red-300 border-dashed"
@@ -42,8 +42,8 @@ const Clients = ({ clients }) => {
                 ></div>
               </div>
             );
-          })} */}
-          <div className="px-5 bg-white xs:w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/5 border-2 border-red-300 border-dashed">
+          })}
+          {/* <div className="px-5 bg-white xs:w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/5 border-2 border-red-300 border-dashed">
             <Image
               width={500}
               height={500}
@@ -106,7 +106,7 @@ const Clients = ({ clients }) => {
               src="/clients/client-1.png"
               className="w-full h-full"
             />
-          </div>
+          </div> */}
         </div>
       </div>
       {/* Clients Section */}
