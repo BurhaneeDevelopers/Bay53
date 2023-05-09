@@ -1,0 +1,3 @@
+Run the server using "npm run dev" it will open the server on "http://localhost:3333/"
+
+To deploy run Sanity Deploy.
