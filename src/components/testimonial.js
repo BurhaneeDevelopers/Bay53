@@ -43,12 +43,12 @@ const Testimonial = ({ testimonials }) => {
   return (
     <>
       {/* Testimonial Section  */}
-      <section className="bg-[#3F5473] p-20">
-        <h2 className="jost font-bold text-4xl text-white text-center tracking-wide">
+      <section className="bg-[#3F5473] p-10 sm:p-20">
+        <h2 className="jost font-bold text-3xl sm:text-4xl text-white tracking-wide text-center">
           Client Testimonials
         </h2>
 
-        <div className="bg-white mt-10 rounded-xl p-20 flex justify-evenly">
+        <div className="bg-white mt-10 rounded-xl p-5 sm:p-20 flex justify-center items-center sm:justify-evenly">
           <Swiper slidesPerView={3}>
           {/* Card  */}
             {testimonials.map((item) => {
@@ -61,7 +61,7 @@ const Testimonial = ({ testimonials }) => {
                   >
                     <div className="overflow-hidden rounded-xl w-[210px] h-[330px]">
                       <div
-                        className="rounded-xl w-fit h-full aspect-square bg-cover bg-center bg-no-repeat aspect"
+                        className="rounded-xl w-fit h-1/2 sm:h-full aspect-square bg-cover bg-center bg-no-repeat aspect"
                         style={{
                           backgroundImage: `url(${builder
                             .image(item.clientimage)
@@ -172,14 +172,14 @@ const Testimonial = ({ testimonials }) => {
           </Swiper>
         </div>
 
-        <div className="Indicators flex items-center justify-end mt-10 gap-x-7">
+        <div className="Indicators flex items-center justify-center sm:justify-end mt-10 gap-x-5 sm:gap-x-7">
           <button
-            className="border-4 border-white/20 rounded-full p-7 flex- justify-center items-center"
+            className="border-4 border-white/20 rounded-full p-5 sm:p-7 flex- justify-center items-center"
           >
             <BsArrowLeft className="text-5xl text-white/30" />
           </button>
           <button
-            className="border-4 border-white/20 rounded-full p-7 flex- justify-center items-center"
+            className="border-4 border-white/20 rounded-full p-5 sm:p-7 flex- justify-center items-center"
           >
             <BsArrowRight className="text-5xl text-white/30" />
           </button>

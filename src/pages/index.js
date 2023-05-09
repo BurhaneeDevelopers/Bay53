@@ -65,7 +65,7 @@ export default function Home({ testimonials, clients }) {
         >
           <SwiperSlide>
             {" "}
-            <div className="absolute bottom-5 left-0 right-0 z-50 mx-auto flex justify-center ">
+            <div className="absolute bottom-10 sm:bottom-5 left-0 right-0 z-50 mx-auto flex justify-center ">
               <div className="rounded-full bg-[#1C4B6F] h-3.5 w-12 mx-0.5"></div>
               <div className="rounded-full bg-[#1C4B6F] h-3.5 w-3.5 mx-0.5"></div>
               <div className="rounded-full bg-[#1C4B6F] h-3.5 w-3.5 mx-0.5"></div>
