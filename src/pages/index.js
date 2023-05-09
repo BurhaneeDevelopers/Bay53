@@ -1,118 +1,217 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import React from "react";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebookF } from "react-icons/fa";
+import {
+  BsArrowRight,
+  BsArrowLeft,
+  BsTwitter,
+  BsInstagram,
+} from "react-icons/bs";
 
-const inter = Inter({ subsets: ['latin'] })
+// Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Autoplay, Pagination, Navigation } from "swiper";
 
-export default function Home() {
+// component
+import Testimonial from "@/components/testimonial";
+import Clients from "@/components/clients";
+
+// Backend
+import { createClient } from "next-sanity";
+import PortableText from "react-portable-text";
+import imageUrlBuilder from "@sanity/image-url";
+
+export default function Home({ testimonials, clients }) {
+  const client = createClient({
+    projectId: "16lbh5q7",
+    dataset: "production",
+    apiVersion: "2021-10-21",
+    useCdn: false,
+  });
+
+  const builder = imageUrlBuilder(client);
+
+  // // const listOfTtestimonials = [];
+  // const handleMouseEnter = () => {
+  //   const testimonialElement = document.querySelector(".testimonial");
+  //   testimonialElement.classList.remove("hidden");
+  // };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <>
+      <Head>
+        <title>Bay53 - CMS Solutions</title>
+      </Head>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+      {/* Hero Section  */}
+      <section>
+        <Swiper
+          spaceBetween={30}
+          centeredSlides={true}
+          allowTouchMove={false}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          preventClicksPropagation={true}
+          preventClicks={true}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <SwiperSlide>
+            {" "}
+            <div className="absolute bottom-5 left-0 right-0 z-50 mx-auto flex justify-center ">
+              <div className="rounded-full bg-[#1C4B6F] h-3.5 w-12 mx-0.5"></div>
+              <div className="rounded-full bg-[#1C4B6F] h-3.5 w-3.5 mx-0.5"></div>
+              <div className="rounded-full bg-[#1C4B6F] h-3.5 w-3.5 mx-0.5"></div>
+            </div>
+            <div class="relative bg-[url(/hero/hero-.png)] bg-cover bg-center bg-no-repeat">
+              <Image
+                width={1000}
+                height={1000}
+                src="/hero/hero-1.png"
+                alt=""
+                className="absolute object-cover object-left h-screen w-full hidden md:flex"
+              />
+              <div class="absolute inset-0 gradient w-[75rem]"></div>
+              <div class="relative mx-auto px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-20">
+                <div class="text-center md:text-start mt-14">
+                  <h1 class="text-3xl font-bold sm:text-5xl lg:text-9xl text-[#062843] jost">
+                    ERP
+                    <span class="block jockey-one lg:text-6xl text-[#1C4B6F] font-thin ">
+                      Business Service
+                    </span>
+                  </h1>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+                  <p class="mt-4 max-w-lg sm:text-xl/relaxed poppins text-[#1C4B6F] font-medium mx-auto md:mx-0">
+                    Say goodbye to the hassle of managing your business
+                    processes manually. Our ERP services provide end-to-end
+                    solutions to automate your operations, improve efficiency
+                    and reduce costs.
+                  </p>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
+                  <div class="mt-8 flex flex-wrap gap-4 text-center justify-center md:justify-start">
+                    <button className="w-40 py-4 bg-transparent border-2 border-[#1C4B6F] text-[#1C4B6F] hover:bg-[#1C4B6F] hover:text-white transition-all ease-in-out duration-300 rounded font-bold jost">
+                      <Link href="/erp">EXPLORE</Link>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="absolute bottom-5 left-0 right-0 z-50 mx-auto flex justify-center ">
+              <div className="rounded-full bg-[#1C4B6F] h-3.5 w-3.5 mx-0.5"></div>
+              <div className="rounded-full bg-[#1C4B6F] h-3.5 w-12 mx-0.5"></div>
+              <div className="rounded-full bg-[#1C4B6F] h-3.5 w-3.5 mx-0.5"></div>
+            </div>
+            <div class="relative">
+              <Image
+                width={1000}
+                height={1000}
+                src="/hero/hero-2.png"
+                alt=""
+                className="absolute object-cover w-2/3 h-screen scale-x-[-1] hidden md:flex"
+              />
+              <div class="absolute inset-0 gradient-2 w-[75rem] scale-x-[-1]"></div>
+              <div class="relative mx-auto px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-20 scale-x-[-1]">
+                <div class="text-center md:text-start mt-14 scale-x-[-1]">
+                  <h1 class="text-3xl font-bold sm:text-5xl lg:text-9xl text-[#062843] jost">
+                    CMS
+                    <span class="block jockey-one lg:text-6xl text-[#1C4B6F] font-thin ">
+                      E-Commerce Service
+                    </span>
+                  </h1>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+                  <p class="mt-4 max-w-lg sm:text-xl/relaxed poppins text-[#1C4B6F] font-medium mx-auto md:mx-0">
+                    Streamline Your Content Creation and Management with Our
+                    Cutting-Edge Content Management System - Effortlessly
+                    Create, Publish, and Optimize Your Website Today!
+                  </p>
+
+                  <div class="mt-8 flex flex-wrap gap-4 text-center justify-center md:justify-start">
+                    <button className="w-40 py-4 bg-transparent border-2 border-[#1C4B6F] text-[#1C4B6F] hover:bg-[#1C4B6F] hover:text-white transition-all ease-in-out duration-300 rounded font-bold jost">
+                      <Link href="/cms">EXPLORE</Link>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="absolute bottom-5 left-0 right-0 z-50 mx-auto flex justify-center ">
+              <div className="rounded-full bg-[#1C4B6F] h-3.5 w-3.5 mx-0.5"></div>
+              <div className="rounded-full bg-[#1C4B6F] h-3.5 w-3.5 mx-0.5"></div>
+              <div className="rounded-full bg-[#1C4B6F] h-3.5 w-12 mx-0.5"></div>
+            </div>
+            <div class="">
+              <Image
+                width={1000}
+                height={1000}
+                src="/hero/hero-3.png"
+                alt=""
+                className="absolute object-cover object-left h-screen w-full translate-x-96 hidden md:flex"
+              />
+              <div class="absolute inset-0 gradient w-[75rem]"></div>
+              <div class="relative mx-auto px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-20">
+                <div class="text-center md:text-start mt-14">
+                  <h1 class="text-3xl font-bold sm:text-5xl lg:text-9xl text-[#062843] jost">
+                    CRM
+                    <span class="block jockey-one lg:text-6xl text-[#1C4B6F] font-thin ">
+                      Business Solution
+                    </span>
+                  </h1>
+
+                  <p class="mt-4 max-w-lg sm:text-xl/relaxed poppins text-[#1C4B6F] font-medium mx-auto md:mx-0">
+                    Revolutionize Your Business with the Ultimate Customer
+                    Relationship Management Solution - Empower Your Team, Boost
+                    Sales, and Maximize Customer Satisfaction Today!
+                  </p>
+
+                  <div class="mt-8 flex flex-wrap gap-4 text-center justify-center md:justify-start">
+                    <button className="w-40 py-4 bg-transparent border-2 border-[#1C4B6F] text-[#1C4B6F] hover:bg-[#1C4B6F] hover:text-white transition-all ease-in-out duration-300 rounded font-bold jost">
+                      <Link href="/crm">EXPLORE</Link>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      </section>
+      {/* Hero Section  */}
+
+      {/* Testimonial  */}
+      <Testimonial testimonials={testimonials} />
+      {/* Testimonial  */}
+
+      {/* Clients  */}
+      <Clients clients={clients} />
+      {/* Clients  */}
+    </>
+  );
+}
+
+export async function getServerSideProps(context) {
+  const client = createClient({
+    projectId: "16lbh5q7",
+    dataset: "production",
+    apiVersion: "2021-10-21",
+    useCdn: false,
+  });
+  const query = `*[_type == "testimonials"]`;
+  const queryTwo = `*[_type == "clients"]`;
+  const testimonials = await client.fetch(query);
+  const clients = await client.fetch(queryTwo);
+  return {
+    props: {
+      testimonials,
+      clients,
+    },
+  };
 }
