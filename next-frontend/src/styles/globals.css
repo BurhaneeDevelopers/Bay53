@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+}
+
+.gradient {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 46%,
+    rgba(220, 220, 220, 0) 100%
+  );
+  mix-blend-mode: normal;
+}
+
+.gradient-2 {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 30%,
+    rgba(220, 220, 220, 0) 70%
+  );
+  mix-blend-mode: normal;
+}
+
+.poppins {
+  font-family: "Poppins", sans-serif;
+}
+.jockey-one {
+  font-family: "Jockey One", sans-serif;
+}
+.jost {
+  font-family: "Jost", sans-serif;
+}
+
+.aspect{
+  aspect-ratio: 3/5;
+}
